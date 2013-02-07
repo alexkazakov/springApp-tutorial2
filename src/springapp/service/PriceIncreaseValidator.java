@@ -2,16 +2,11 @@ package springapp.service;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-/**
- * Created with IntelliJ IDEA.
- * User: ak
- * Date: 06.02.13
- * Time: 16:06
- * To change this template use File | Settings | File Templates.
- */
+//@Component
 public class PriceIncreaseValidator implements Validator {
 
     private final Log logger = LogFactory.getLog(getClass());
@@ -29,14 +24,14 @@ public class PriceIncreaseValidator implements Validator {
     public void validate(Object o, Errors errors) {
         PriceIncrease priceIncrease = (PriceIncrease) o;
         if (priceIncrease == null) {
-            errors.rejectValue("percentage", "error.not-specified", null, "Value required.");
+            errors.rejectValue("progress", "error.not-specified", null, "Value required.");
         } else {
             logger.info("Validating with " + priceIncrease + ": " + priceIncrease.getPercentage());
             if (priceIncrease.getPercentage() > maxPercentage) {
-                errors.rejectValue("percentage", "error.too-high", new Object[]{maxPercentage}, "Value too high");
+                errors.rejectValue("progress", "error.too-high", new Object[]{maxPercentage}, "Value too high");
             }
             if (priceIncrease.getPercentage() <= minPercentage) {
-                errors.rejectValue("pecentage", "error.too-low", new Object[]{minPercentage}, "Value too low");
+                errors.rejectValue("progress", "error.too-low", new Object[]{minPercentage}, "Value too low");
             }
         }
     }

@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import springapp.domain.ProductManager;
 import springapp.service.PriceIncrease;
-import springapp.service.PriceIncreaseValidator;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -25,14 +26,16 @@ public class PriceIncreaseController {
      */
     protected final Log logger = LogFactory.getLog(getClass());
 
+    //    @Autowired
+//    private PriceIncreaseValidator validator;
     @Autowired
-    private PriceIncreaseValidator validator;
     private ProductManager productManager;
 
-    public ProductManager getProductManager() {
-        return productManager;
-    }
-
+    //    @InitBinder
+//    protected void initBinder(WebDataBinder binder) {
+//        logger.info("initBinder with validator " + validator);
+//        binder.setValidator(validator);
+//    }
     public void setProductManager(ProductManager productManager) {
         this.productManager = productManager;
     }
